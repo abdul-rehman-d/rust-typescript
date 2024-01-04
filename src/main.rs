@@ -1,17 +1,26 @@
+#[derive(Debug)]
+struct Item {
+    count: usize
+}
+
+fn add_one(item: &mut Item) {
+    item.count += 1;
+}
+
+fn print_all(items: &Vec<Item>) {
+    for item in items {
+        println!("{:?}", item);
+    }
+}
+
 fn main() {
-    let filename = std::env::args().nth(1)
-        .expect("please provide a filename");
+    let mut items = vec![Item { count: 1 }, Item { count: 1 }];
 
-    let file = std::fs::read_to_string(filename)
-        .expect("file doesnt exist.");
-
-    file
-        .lines()
-        .for_each(|line| {
-            if let Ok(x) = line.parse::<usize>() {
-                println!("{}", x);
-            } else {
-                println!("Line not a number")
-            }
-        });
+    let one = items.get_mut(0);
+    let two = items.get_mut(1);
+    println!("{:?}", two);
+    
+    print_all(&items);
+    
+    // println!("{:?}", first);
 }
