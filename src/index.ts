@@ -1,8 +1,21 @@
-function multiplyBy5(nums: number[], idx: number): number {
-    return (nums[idx] ?? idx) * 5;
+import fs from "fs";
+
+const filename = process.argv[2];
+
+if (!filename) {
+    process.exit(1);
 }
 
-const nums: number[] = [1,2,3];
-
-console.log(multiplyBy5(nums, 1));
-console.log(multiplyBy5(nums, 3));
+fs.readFileSync(filename)
+    .toString()
+    .split('\n')
+    .forEach(
+        line => {
+            const print = parseInt(line);
+            if (isNaN(print)) {
+                console.log("Line not a number");
+            } else {
+                console.log(print);
+            }
+        }
+    );

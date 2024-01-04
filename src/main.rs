@@ -1,11 +1,17 @@
-
-fn multiply_by_5(nums: &Vec<usize>, idx: usize) -> usize {    
-    return nums.get(idx).unwrap_or(&idx) * 5;
-}
-
 fn main() {
-    let v = vec![1,2,3];
+    let filename = std::env::args().nth(1)
+        .expect("please provide a filename");
 
-    println!("{:?}", multiply_by_5(&v, 1));
-    println!("{:?}", multiply_by_5(&v, 3));
+    let file = std::fs::read_to_string(filename)
+        .expect("file doesnt exist.");
+
+    file
+        .lines()
+        .for_each(|line| {
+            if let Ok(x) = line.parse::<usize>() {
+                println!("{}", x);
+            } else {
+                println!("Line not a number")
+            }
+        });
 }
