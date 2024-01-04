@@ -1,3 +1,10 @@
+import fs from "fs";
 
-const arr = [1, 2, 3].map(x => x + 1);
-console.log(arr)
+const contents = fs.readFileSync("./lines", 'utf-8');
+contents
+    .split('\n')
+    .filter((_, i) => i%2===0)
+    .filter((_, i) => i>1 && i<4)
+    .forEach((line) => {
+    console.log(line);
+})
