@@ -1,22 +1,8 @@
-type Custom = {
-    age: number;
-    name: string;
+function multiplyBy5(nums: number[], idx: number): number {
+    return (nums[idx] ?? idx) * 5;
 }
-
-type Item = number | string | Custom;
-
-function append(list: Item[]) {
-    list.push("Hello, fem");
-}
-
-const items: Item[] = [];
-
-console.log(items);
-append(items);
-console.log(items);
 
 const nums: number[] = [1,2,3];
 
-console.log(nums);
-append(nums);
-console.log(nums);
+console.log(multiplyBy5(nums, 1));
+console.log(multiplyBy5(nums, 3));

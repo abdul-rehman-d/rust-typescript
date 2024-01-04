@@ -1,23 +1,11 @@
-struct Custom {
-    age: usize,
-    name: String,
-}
 
-enum Item {
-    Number(usize),
-    String(String),
-    MyCustom(Custom),
-}
-
-fn append(items: &mut Vec<Item>) {
-    items.push(Item::String("hello fem!".into()));
+fn multiply_by_5(nums: &Vec<usize>, idx: usize) -> usize {    
+    return nums.get(idx).unwrap_or(&idx) * 5;
 }
 
 fn main() {
-    let mut items: Vec<Item> = vec![];
-    append(&mut items);
+    let v = vec![1,2,3];
 
-    // not allowed
-    // let mut items: Vec<usize> = vec![];
-    // append(&mut items);
+    println!("{:?}", multiply_by_5(&v, 1));
+    println!("{:?}", multiply_by_5(&v, 3));
 }
