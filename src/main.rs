@@ -1,26 +1,23 @@
-#[derive(Debug)]
-struct Item {
-    count: usize
-}
+mod shapes;
 
-fn add_one(item: &mut Item) {
-    item.count += 1;
-}
-
-fn print_all(items: &Vec<Item>) {
-    for item in items {
-        println!("{:?}", item);
-    }
-}
+use crate::shapes::{rect::Rect, circle::Circle, area::Area, collisions::Collidable};
 
 fn main() {
-    let mut items = vec![Item { count: 1 }, Item { count: 1 }];
+    let rect1 = Rect::default();
+    let rect2 = Rect::default();
 
-    let one = items.get_mut(0);
-    let two = items.get_mut(1);
-    println!("{:?}", two);
-    
-    print_all(&items);
-    
-    // println!("{:?}", first);
+    let circ1 = Circle {
+        x: 0.0,
+        y: 0.0,
+        radius: 10.0,
+    };
+    let circ2 = Circle {
+        x: 0.0,
+        y: 0.0,
+        radius: 5.0,
+    };
+
+    println!("rect1.collide(&rect2) {}", rect1.collide(&rect2));
+    println!("rect1.collide(&circ2) {}", rect1.collide(&circ2));
+    println!("circ1.collide(&circ2) {}", circ1.collide(&circ2));
 }
