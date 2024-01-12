@@ -1,6 +1,6 @@
 mod shapes;
 
-use crate::shapes::{rect::Rect, circle::Circle, area::Area, collisions::Collidable};
+use crate::shapes::{rect::Rect, circle::Circle, collisions::Collidable};
 
 fn main() {
     let rect1 = Rect::default();

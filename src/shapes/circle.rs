@@ -1,4 +1,4 @@
-use super::{area::Area, rect::Rect, collisions::Collidable};
+use super::{area::Area, collisions::{Contains, Points, PointIter}};
 
 pub struct Circle {
     pub x: f64,
@@ -6,7 +6,13 @@ pub struct Circle {
     pub radius: f64,
 }
 
-impl Circle {
+impl Points for Circle {
+    fn points(&self) -> PointIter {
+        return vec![(self.x, self.y)].into();
+    }
+}
+
+impl Contains for Circle {
     fn contains_point(&self, (x, y): (f64, f64)) -> bool {
         let dx = self.x - x;
         let dy = self.y - y;
@@ -15,22 +21,6 @@ impl Circle {
     }
 }
 
-impl Collidable<Rect> for Circle {
-    fn collide(&self, other: &Rect) -> bool {
-        for point in other {
-            if self.contains_point(point) {
-                return true;
-            }
-        }
-        return false;
-    }
-}
-
-impl Collidable<Circle> for Circle {
-    fn collide(&self, other: &Circle) -> bool {
-        return self.contains_point((other.x, other.y));
-    }
-}
 
 impl Area for Circle {
     fn area(&self) -> f64 {
